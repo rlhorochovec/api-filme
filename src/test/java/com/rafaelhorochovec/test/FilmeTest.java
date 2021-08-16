@@ -14,12 +14,11 @@ public class FilmeTest {
 
 	@Test
 	public void deveRetornarTodosFilmes() {
-		RestAssured
-		.given()
-		.when()
-			.get("/filmes")
-		.then()
-			.log().all()
-			.statusCode(200);
+		RestAssured.given()
+			.when()
+				.get("/filmes")
+			.then()
+				.log().all()
+				.statusCode(200);
 	}
 }
