@@ -29,7 +29,7 @@ public class FilmeController {
 	FilmeRepository filmeRepository;
 
 	@PostMapping("/filmes")
-	public ResponseEntity<Filme> createrFilme(@RequestBody Filme filme) {
+	public ResponseEntity<Filme> create(@RequestBody Filme filme) {
 		try {
 			Filme _filme = filmeRepository
 					.save(new Filme(filme.getTitulo()));
@@ -40,7 +40,7 @@ public class FilmeController {
 	}
 
 	@GetMapping("/filmes")
-	public ResponseEntity<List<Filme>> getFilmes(@RequestParam(required = false) String titulo) {
+	public ResponseEntity<List<Filme>> read(@RequestParam(required = false) String titulo) {
 		try {
 			List<Filme> filmes = new ArrayList<Filme>();
 			if (titulo == null) {
@@ -59,7 +59,7 @@ public class FilmeController {
 	}
 
 	@GetMapping("/filmes/{id}")
-	public ResponseEntity<Filme> getFilmeById(@PathVariable("id") UUID id) {
+	public ResponseEntity<Filme> getById(@PathVariable("id") UUID id) {
 		Optional<Filme> filme = filmeRepository.findById(id);
 		if (filme.isPresent()) {
 			return new ResponseEntity<>(filme.get(), HttpStatus.OK);
@@ -69,7 +69,7 @@ public class FilmeController {
 	}
 
 	@PutMapping("/filmes/{id}")
-	public ResponseEntity<Filme> updateFilme(@PathVariable("id") UUID id, @RequestBody Filme filme) {
+	public ResponseEntity<Filme> update(@PathVariable("id") UUID id, @RequestBody Filme filme) {
 		Optional<Filme> objFilme = filmeRepository.findById(id);
 		if (objFilme.isPresent()) {
 			Filme _filme = objFilme.get();
@@ -81,7 +81,7 @@ public class FilmeController {
 	}
 
 	@DeleteMapping("/filmes/{id}")
-	public ResponseEntity<HttpStatus> deleteFilme(@PathVariable("id") UUID id) {
+	public ResponseEntity<HttpStatus> delete(@PathVariable("id") UUID id) {
 		try {
 			filmeRepository.deleteById(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -91,7 +91,7 @@ public class FilmeController {
 	}
 
 	@DeleteMapping("/filmes")
-	public ResponseEntity<HttpStatus> deleteAllFilmes() {
+	public ResponseEntity<HttpStatus> deleteAll() {
 		try {
 			filmeRepository.deleteAll();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
