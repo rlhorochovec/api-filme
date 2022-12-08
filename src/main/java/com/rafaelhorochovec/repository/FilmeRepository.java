@@ -9,5 +9,4 @@ import com.rafaelhorochovec.model.Filme;
 
 public interface FilmeRepository extends JpaRepository<Filme, UUID> {
 
-	List<Filme> findByTitulo(String titulo);
 }
