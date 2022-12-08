@@ -8,10 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Filme extends Auditoria {
 
 	/**
@@ -26,33 +32,8 @@ public class Filme extends Auditoria {
 	@Type(type = "pg-uuid")
 	private UUID id;
 	private String titulo;
-	
-	
-	public Filme() {
-	}
 
 	public Filme(String titulo) {
 		this.titulo = titulo;
-	}
-
-	public UUID getId() {
-		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	@Override
-	public String toString() {
-		return "Filme [id=" + id + ", titulo=" + titulo + "]";
 	}
 }
